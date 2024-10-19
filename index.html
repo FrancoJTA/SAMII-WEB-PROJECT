@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Datos del superusuario hardcodeado
+        const superUser = {
+            name: "admin",
+            email: "admin@sami.com",
+            password: "superadmin123"
+        };
+
+        function login(event) {
+            event.preventDefault(); 
+
+            // Obtener los valores de los inputs
+            const inputName = document.querySelector('input[placeholder="NAME"]').value;
+            const inputEmail = document.querySelector('input[placeholder="E-MAIL"]').value;
+            const inputPassword = document.querySelector('input[placeholder="PASSWORD"]').value;
+
+            // Validar credenciales
+            if (inputName === superUser.name && inputEmail === superUser.email && inputPassword === superUser.password) {
+                // Redirigir a la segunda pantalla
+                window.location.href = "panel.html"; // Cambiar a la página del panel
+            } else {
+                alert('Credenciales incorrectas');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span>&#9889; SAMI</span>
+            </div>
+            <div class="login">
+                <a href="#">LOG IN</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="form-content">
+                <div class="text-content">
+                    <h1>Bienvenido</h1>
+                    <p>Por favor llena los datos de administrador para poder ingresar.</p>
+                </div>
+                <div class="form-container">
+                    <form onsubmit="login(event)">
+                        <div class="input-group">
+                            <input type="text" placeholder="NAME" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="E-MAIL" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" placeholder="PASSWORD" required>
+                        </div>
+                        <div class="input-group">
+                            <button type="submit">CONFIRMAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
