@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente</title>
+    <link rel="stylesheet" href="userstyles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span>&#9889; SAMI</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="form-content">
+                <div class="form-container">
+                    <h2>Agregar/Editar Cliente</h2>
+                    <form id="user-form">
+                        <div class="input-group">
+                            <input type="text" placeholder="Nombre" id="name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="Correo Electrónico" id="email" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Codigo Medidor" id="medidor" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" placeholder="Contraseña" id="password" required>
+                        </div>
+                        <div class="input-group">
+                            <button type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="table-content">
+                <h2>Lista de Clientes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo Electrónico</th>
+                            <th>Medidor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table">
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="user.js"></script>
+</body>
+</html>

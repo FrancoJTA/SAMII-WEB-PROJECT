@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Añadir margen entre los botones */
+        .form-container button {
+            margin: 10px 0; /* Margen superior e inferior de 10px */
+            padding: 15px 30px; /* Ajustar el padding para que los botones sean más amplios */
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #384341; /* Fondo del botón */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #68827F; /* Efecto hover del botón */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span>&#9889; SAMI</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="form-content">
+                <div class="text-content">
+                    <h1>Panel de Control</h1>
+                    <p>Elige una opción:</p>
+                </div>
+                <div class="form-container">
+                    <button onclick="window.location.href=''">ADMINISTRAR MONITOREADORES</button>
+                    <button onclick="window.location.href='user.html'">ADMINISTRAR CLIENTES</button>
+                    <button onclick="window.location.href='reportes.html'">REPORTES</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

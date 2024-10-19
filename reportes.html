@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para separar visualmente el formulario de la tabla */
+        #report-table {
+            margin-top: 40px;
+            border-spacing: 0;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        
+        #reportTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #reportTable th, #reportTable td {
+            border: 1px solid #384341;
+            padding: 12px;
+            text-align: center;
+        }
+
+        #reportTable th {
+            background-color: #384341;
+            color: white;
+        }
+
+        #reportTable td {
+            background-color: #F5F6F7;
+        }
+
+        /* Separación del formulario */
+        #report-form {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #7DC2B3;
+        }
+        
+        /* Centrando el contenido */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Centrado del contenido principal */
+        main {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #384341;
+            font-size: 24px;
+        }
+
+        footer {
+            margin-top: 50px;
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 20px 0;
+        }
+
+        footer h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Estilo para los botones de editar y eliminar */
+        .edit-btn, .delete-btn {
+            cursor: pointer;
+            padding: 5px 10px;
+            margin: 5px;
+            border: none;
+            color: white;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .delete-btn {
+            background-color: #F44336;
+        }
+    </style>
+
+    <script>
+        let editIndex = null; // Para manejar la edición
+
+        // Función para establecer la fecha y estado automáticos
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fecha').value = today;
+            document.getElementById('estado').value = 'Pendiente';
+        }
+
+        // Función para manejar el envío del formulario
+        function submitReport(event) {
+            event.preventDefault();
+
+            // Obtener los valores del formulario
+            const importancia = document.getElementById('importancia').value;
+            const fecha = document.getElementById('fecha').value;
+            const estado = document.getElementById('estado').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const descripcion = document.getElementById('descripcion').value;
+
+            const table = document.getElementById('reportTable').getElementsByTagName('tbody')[0];
+
+            // Si estamos editando una fila
+            if (editIndex !== null) {
+                const row = table.rows[editIndex];
+                row.cells[0].textContent = importancia;
+                row.cells[1].textContent = fecha;
+                row.cells[2].textContent = estado;
+                row.cells[3].textContent = ubicacion;
+                row.cells[4].textContent = descripcion;
+
+                // Limpiar la edición
+                editIndex = null;
+            } else {
+                // Insertar una nueva fila
+                const newRow = table.insertRow();
+                newRow.insertCell(0).textContent = importancia;
+                newRow.insertCell(1).textContent = fecha;
+                newRow.insertCell(2).textContent = estado;
+                newRow.insertCell(3).textContent = ubicacion;
+                newRow.insertCell(4).textContent = descripcion;
+
+                // Añadir botones de acción (editar y eliminar)
+                const actionCell = newRow.insertCell(5);
+                actionCell.innerHTML = `
+                    <button class="edit-btn" onclick="editReport(this)">Editar</button>
+                    <button class="delete-btn" onclick="deleteReport(this)">Eliminar</button>
+                `;
+            }
+
+            // Limpiar los campos después de enviar
+            document.getElementById('ubicacion').value = '';
+            document.getElementById('descripcion').value = '';
+        }
+
+        // Función para editar un reporte
+        function editReport(button) {
+            const row = button.parentElement.parentElement;
+            const table = document.getElementById('reportTable').getElementsByTagName('tbody')[0];
+            editIndex = row.rowIndex - 1; // Guardar el índice de la fila
+
+            // Llenar el formulario con los datos de la fila seleccionada
+            document.getElementById('importancia').value = row.cells[0].textContent;
+            document.getElementById('fecha').value = row.cells[1].textContent;
+            document.getElementById('estado').value = row.cells[2].textContent;
+            document.getElementById('ubicacion').value = row.cells[3].textContent;
+            document.getElementById('descripcion').value = row.cells[4].textContent;
+
+            // Scroll hacia el formulario para ver los campos
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Función para eliminar un reporte
+        function deleteReport(button) {
+            const row = button.parentElement.parentElement;
+            row.remove(); // Eliminar la fila de la tabla
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span>&#9889; SAMI</span>
+            </div>
+        
+        </header>
+
+        <main>
+            <div class="form-content">
+                <div class="text-content">
+                    <h1>Formulario de Reportes</h1>
+                    <p>Por favor llena el siguiente formulario para generar un reporte.</p>
+                </div>
+
+                <!-- Formulario de Reportes -->
+                <div id="report-form">
+                    <form onsubmit="submitReport(event)">
+                        <div class="input-group">
+                            <label for="importancia">Importancia:</label>
+                            <select id="importancia" required>
+                                <option value="Importante">Importante</option>
+                                <option value="No tan importante">No tan importante</option>
+                                <option value="No importante">No importante</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="fecha">Fecha:</label>
+                            <input type="date" id="fecha" required readonly>
+                        </div>
+                        <div class="input-group">
+                            <label for="estado">Estado:</label>
+                            <input type="text" id="estado" required readonly>
+                        </div>
+                        <div class="input-group">
+                            <label for="ubicacion">Ubicación:</label>
+                            <input type="text" id="ubicacion" placeholder="Ingrese la ubicación" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="descripcion">Descripción:</label>
+                            <textarea id="descripcion" rows="4" placeholder="Ingrese la descripción" required></textarea>
+                        </div>
+                        <div class="input-group">
+                            <button type="submit">Enviar Reporte</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Tabla para mostrar los reportes, ubicada en el pie de página -->
+        <footer>
+            <h2>Reportes Generados</h2>
+            <table id="reportTable">
+                <thead>
+                    <tr>
+                        <th>Importancia</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Ubicación</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se agregarán las filas de la tabla -->
+                </tbody>
+            </table>
+        </footer>
+    </div>
+</body>
+</html>

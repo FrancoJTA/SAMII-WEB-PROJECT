@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #F5F6F7; /* Fondo general */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    align-items: center;
+    background-color: #F5F6F7;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #384341; /* Color del logo */
+    display: flex;
+    align-items: center;
+}
+
+.login a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: #384341; /* Color del texto 'LOG IN' */
+    position: relative;
+}
+
+.login a::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #384341;
+    margin-top: 5px;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.form-content {
+    display: flex;
+    background-color: #7DC2B3; /* Fondo del formulario */
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.text-content {
+    width: 50%;
+    padding-right: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #384341; /* Color del título */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #68827F; /* Color del subtítulo */
+}
+
+.form-container {
+    width: 50%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #A6D5CD; /* Fondo de los inputs */
+    color: #384341; /* Color del texto dentro de los inputs */
+}
+
+input::placeholder {
+    color: #8EADAA; /* Color del texto placeholder */
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #384341; /* Fondo del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #68827F; /* Hover del botón */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .form-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .text-content, .form-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .text-content {
+        padding-right: 0;
+    }
+}
